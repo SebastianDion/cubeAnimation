@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Cube</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <div class="Text">
+    <p class="txtStyle">Cube</p>
+   </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/controls/OrbitControls.min.js"></script>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+    
+
+        
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load('hex.jpeg');
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ map: texture });
+        // const material = new THREE.MeshBasicMaterial({ color: 0x0ffffff });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 4;
+
+      
+        let mouseX = 0;
+        let mouseY = 0;
+        let rotationSpeedX = 0.03;
+        let rotationSpeedY = 0.03;
+
+        // Function to track mouse movement
+        window.addEventListener('mousemove', (event) => {
+        
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+     
+            rotationSpeedX = mouseY * 0.1;
+            rotationSpeedY = mouseX * 0.1;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            cube.rotation.x += rotationSpeedX;
+            cube.rotation.y += rotationSpeedY;
+            
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
