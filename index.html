@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    
    <div class="Text">
     <p class="txtStyle">It's a fucking Loop</p>
+    <audio controls class="audio">
+        <source src="Biktor.mp4" type="audio/mpeg">
+        Glorious Evolution Sounds
+    </audio>
    </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -49,8 +53,8 @@
             mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
      
-            rotationSpeedX = mouseY * 0.1;
-            rotationSpeedY = mouseX * 0.1;
+            rotationSpeedX = mouseY * 0.2;
+            rotationSpeedY = mouseX * 0.2;
         });
 
         function animate() {
